@@ -1,6 +1,8 @@
 # NativeScript on iPhone Duo: native tab bar and toolbars
 
-A [NativeScript](https://nativescript.org) + Angular app that answers one question: can NativeScript drive Apple's foldable with the real iOS tab bar and toolbar? It can, and this app shows how. Everything on screen is UIKit: a `UITabBarController` behind NativeScript's `TabView`, `UIToolbar` through [`@nstudio/nativescript-toolbar`](https://plugins.nstudio.io/plugins/toolbar), `UISearchController`, `UIMenu`, and the iOS 27.1 hinge APIs, all driven from TypeScript with no native code in the project.
+A [NativeScript](https://nativescript.org) + Angular app. Everything on screen is UIKit: a `UITabBarController` behind NativeScript's `TabView`, `UIToolbar` through [`@nstudio/nativescript-toolbar`](https://plugins.nstudio.io/plugins/toolbar), `UISearchController`, `UIMenu`, and the iOS 27.1 hinge APIs, all driven from TypeScript with no native code in the project.
+
+https://github.com/user-attachments/assets/e0019ef6-7030-47f5-bd7d-2d391a85d694
 
 ## What it does on the Duo
 
