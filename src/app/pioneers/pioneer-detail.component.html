@@ -1,0 +1,4 @@
+<ActionBar [title]="pioneer()?.name ?? ''"></ActionBar>
+@if (pioneer(); as p) {
+  <ns-pioneer-panel [pioneer]="p" (pioneerChange)="id.set($event)"></ns-pioneer-panel>
+}

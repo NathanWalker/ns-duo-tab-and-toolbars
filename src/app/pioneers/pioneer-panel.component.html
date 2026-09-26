@@ -1,0 +1,20 @@
+<GridLayout rows="*, auto" class="panel-host">
+  <ScrollView (loaded)="onScrollLoaded($event)">
+    <StackLayout class="panel">
+      <GridLayout class="hero" [backgroundColor]="pioneer().tint">
+        <Image [src]="'sys://' + pioneer().symbol" class="hero-symbol" tintColor="#ffffff"></Image>
+      </GridLayout>
+      <Label [text]="pioneer().name" class="hero-name" textWrap="true"></Label>
+      <Label [text]="meta()" class="hero-meta" textWrap="true"></Label>
+      <Label [text]="pioneer().summary" class="summary" textWrap="true"></Label>
+      <Label text="Notable work" class="section"></Label>
+      @for (item of pioneer().achievements; track $index; let i = $index) {
+        <GridLayout columns="auto, *" class="achievement">
+          <Label [text]="i + 1" class="achievement-index" [backgroundColor]="pioneer().tint"></Label>
+          <Label col="1" [text]="item" class="achievement-text" textWrap="true"></Label>
+        </GridLayout>
+      }
+    </StackLayout>
+  </ScrollView>
+  <NToolbar row="1" class="toolbar" (loaded)="onToolbarLoaded($event)" (itemTap)="onToolbarTap($event)"></NToolbar>
+</GridLayout>

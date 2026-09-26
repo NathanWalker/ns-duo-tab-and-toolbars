@@ -1,0 +1,10 @@
+<TabView
+  iosTabBarMinimizeBehavior="onScrollDown"
+  (loaded)="onTabsLoaded($event)"
+  (selectedIndexChanged)="onTabChanged($event)"
+>
+  <page-router-outlet *tabItem="{ title: 'Pioneers', iconSource: 'sys://person.2' }" name="pioneersTab"></page-router-outlet>
+  <page-router-outlet *tabItem="{ title: 'Bookmarks', iconSource: 'sys://bookmark' }" name="bookmarksTab"></page-router-outlet>
+  <page-router-outlet *tabItem="{ title: 'Hinge', iconSource: 'sys://rectangle.split.2x1' }" name="hingeTab"></page-router-outlet>
+  <page-router-outlet *tabItem="{ title: 'Search', iconSource: 'sys://magnifyingglass', role: 'search' }" name="searchTab"></page-router-outlet>
+</TabView>

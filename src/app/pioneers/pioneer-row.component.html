@@ -1,0 +1,12 @@
+<GridLayout columns="auto, *, auto" class="row" [class.row-selected]="selected()">
+  <GridLayout class="avatar" [backgroundColor]="pioneer().tint">
+    <Image [src]="'sys://' + pioneer().symbol" class="avatar-symbol" tintColor="#ffffff"></Image>
+  </GridLayout>
+  <StackLayout col="1" class="row-text" verticalAlignment="center">
+    <Label [text]="pioneer().name" class="row-title"></Label>
+    <Label [text]="subtitle()" class="row-subtitle"></Label>
+  </StackLayout>
+  @if (bookmarked()) {
+    <Image col="2" src="sys://bookmark.fill" class="row-bookmark" verticalAlignment="center"></Image>
+  }
+</GridLayout>

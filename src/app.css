@@ -1,3 +1,244 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Palette: system grouped backgrounds, indigo accent. */
+.list {
+  background-color: transparent;
+}
+.row {
+  padding: 8 14;
+  margin: 1 10;
+  border-radius: 16;
+}
+.row-selected {
+  background-color: #eeeef3;
+}
+.ns-dark .row-selected {
+  background-color: #1c1c1e;
+}
+.avatar {
+  width: 46;
+  height: 46;
+  border-radius: 13;
+}
+.avatar-symbol {
+  width: 24;
+  height: 24;
+}
+.row-text {
+  margin-left: 14;
+}
+.row-title {
+  font-size: 17;
+  font-weight: 600;
+  color: #111114;
+}
+.ns-dark .row-title {
+  color: #f5f5f7;
+}
+.row-subtitle {
+  font-size: 14;
+  color: #8e8e93;
+  margin-top: 2;
+}
+.row-bookmark {
+  width: 15;
+  height: 15;
+  tint-color: #8e8e93;
+  margin-left: 10;
+}
+
+/* Detail panel */
+.panel-host {
+  background-color: transparent;
+}
+.panel {
+  padding: 22 22 40 22;
+}
+.hero {
+  width: 96;
+  height: 96;
+  border-radius: 28;
+  horizontal-align: left;
+}
+.hero-symbol {
+  width: 48;
+  height: 48;
+}
+.hero-name {
+  margin-top: 18;
+  font-size: 30;
+  font-weight: 700;
+  color: #111114;
+}
+.ns-dark .hero-name {
+  color: #f5f5f7;
+}
+.hero-meta {
+  margin-top: 4;
+  font-size: 15;
+  color: #8e8e93;
+}
+.summary {
+  margin-top: 16;
+  font-size: 17;
+  line-height: 5;
+  color: #2c2c2e;
+}
+.ns-dark .summary {
+  color: #d1d1d6;
+}
+.section {
+  margin: 26 0 10 0;
+  font-size: 13;
+  font-weight: 600;
+  letter-spacing: 0.06;
+  text-transform: uppercase;
+  color: #8e8e93;
+}
+.achievement {
+  margin: 5 0;
+}
+.achievement-index {
+  width: 24;
+  height: 24;
+  border-radius: 12;
+  font-size: 12;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: center;
+}
+.achievement-text {
+  margin-left: 12;
+  font-size: 16;
+  color: #2c2c2e;
+  vertical-align: center;
+}
+.ns-dark .achievement-text {
+  color: #d1d1d6;
+}
+.toolbar {
+  height: 44;
+}
+
+/* Hinge dashboard */
+.hinge {
+  padding: 8 0 120 0;
+}
+.card {
+  margin: 0 18 14 18;
+  padding: 18 20;
+  border-radius: 22;
+  background-color: #f2f2f7;
+}
+.ns-dark .card {
+  background-color: #1c1c1e;
+}
+.card-hero {
+  padding: 20 22;
+}
+.hero-pose {
+  font-size: 34;
+  font-weight: 700;
+  color: #111114;
+}
+.ns-dark .hero-pose {
+  color: #f5f5f7;
+}
+.hero-degrees {
+  font-size: 34;
+  font-weight: 600;
+  color: #5e5ce6;
+}
+.hero-status {
+  margin-top: 8;
+  font-size: 15;
+  line-height: 3;
+  color: #6e6e73;
+}
+.ns-dark .hero-status {
+  color: #98989d;
+}
+.card-model {
+  padding: 0;
+}
+.half {
+  border-radius: 12;
+  background-color: #5e5ce6;
+}
+.half-lid {
+  background-color: #8482ff;
+}
+.model-track {
+  height: 6;
+  border-radius: 3;
+  background-color: #d1d1d6;
+  margin-bottom: 18;
+}
+.ns-dark .model-track {
+  background-color: #48484a;
+}
+.model-fill {
+  height: 6;
+  border-radius: 3;
+  background-color: #5e5ce6;
+}
+.hinge .section {
+  margin-left: 22;
+}
+.readout {
+  padding: 10 0;
+  border-bottom-width: 0.5;
+  border-bottom-color: #d1d1d6;
+}
+.ns-dark .readout {
+  border-bottom-color: #3a3a3c;
+}
+.readout-label {
+  font-size: 16;
+  color: #111114;
+}
+.ns-dark .readout-label {
+  color: #f5f5f7;
+}
+.readout-api {
+  margin-top: 2;
+  font-size: 12;
+  font-family: 'Menlo';
+  color: #8e8e93;
+}
+.readout-value {
+  margin-left: 16;
+  font-size: 16;
+  font-weight: 600;
+  text-align: right;
+  color: #5e5ce6;
+}
+
+/* Empty states */
+.empty {
+  padding: 0 40;
+}
+.empty-symbol {
+  width: 56;
+  height: 56;
+  tint-color: #c7c7cc;
+}
+.empty-title {
+  margin-top: 16;
+  font-size: 22;
+  font-weight: 600;
+  text-align: center;
+  color: #111114;
+}
+.ns-dark .empty-title {
+  color: #f5f5f7;
+}
+.empty-caption {
+  margin-top: 6;
+  font-size: 15;
+  text-align: center;
+  color: #8e8e93;
+}

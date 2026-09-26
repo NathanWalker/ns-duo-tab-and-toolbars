@@ -1,0 +1,12 @@
+<ActionBar title="Pioneers" iosLargeTitle="true"></ActionBar>
+
+<GridLayout [columns]="columns()" (loaded)="onLoaded($event)" (layoutChanged)="onLayout()">
+  <ListView [items]="people.sorted()" class="list" separatorColor="transparent" (itemTap)="onItemTap($event)" (loaded)="onListLoaded($event)">
+    <ng-template let-p="item">
+      <ns-pioneer-row [pioneer]="p" [selected]="twoPane() && p.id === people.selectedId()"></ns-pioneer-row>
+    </ng-template>
+  </ListView>
+  @if (twoPane()) {
+    <ns-pioneer-panel col="2" [pioneer]="people.selected()" (pioneerChange)="people.selectedId.set($event)"></ns-pioneer-panel>
+  }
+</GridLayout>

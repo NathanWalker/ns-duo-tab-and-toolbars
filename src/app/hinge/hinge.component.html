@@ -1,0 +1,42 @@
+<ActionBar title="Hinge" iosLargeTitle="true"></ActionBar>
+
+<ScrollView>
+  <StackLayout class="hinge">
+    @if (duo.supported()) {
+      <GridLayout rows="auto, auto" columns="*, auto" class="card card-hero">
+        <Label [text]="duo.poseLabel()" class="hero-pose"></Label>
+        <Label col="1" [text]="degreesText()" class="hero-degrees"></Label>
+        <Label row="1" colSpan="2" [text]="statusText()" class="hero-status" textWrap="true"></Label>
+      </GridLayout>
+
+      <GridLayout class="card card-model" height="200">
+        <GridLayout columns="72, 72" horizontalAlignment="center" verticalAlignment="center">
+          <GridLayout class="half half-fixed" width="72" height="120"></GridLayout>
+          <GridLayout col="1" class="half half-lid" width="72" height="120" originX="0" originY="0.5" perspective="600" [rotateY]="lidRotation()"></GridLayout>
+        </GridLayout>
+        <GridLayout class="model-track" verticalAlignment="bottom" horizontalAlignment="center" width="200">
+          <GridLayout class="model-fill" horizontalAlignment="left" [width]="fillWidth()"></GridLayout>
+        </GridLayout>
+      </GridLayout>
+
+      <Label text="Live from UIKit" class="section"></Label>
+      <StackLayout class="card">
+        @for (row of readouts(); track row.api) {
+          <GridLayout columns="*, auto" class="readout">
+            <StackLayout>
+              <Label [text]="row.label" class="readout-label"></Label>
+              <Label [text]="row.api" class="readout-api"></Label>
+            </StackLayout>
+            <Label col="1" [text]="row.value" class="readout-value" textWrap="true" verticalAlignment="center"></Label>
+          </GridLayout>
+        }
+      </StackLayout>
+    } @else {
+      <StackLayout class="empty" verticalAlignment="center">
+        <Image src="sys://iphone.slash" class="empty-symbol"></Image>
+        <Label text="No hinge here" class="empty-title"></Label>
+        <Label text="Run this on iPhone Duo, or the iPhone Duo simulator in Xcode 27.1, to watch the hinge, fold and vertical bar update live." class="empty-caption" textWrap="true"></Label>
+      </StackLayout>
+    }
+  </StackLayout>
+</ScrollView>

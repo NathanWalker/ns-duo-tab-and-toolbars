@@ -1,0 +1,17 @@
+<ActionBar title="Search"></ActionBar>
+
+<GridLayout>
+  @if (results().length === 0) {
+    <StackLayout class="empty" verticalAlignment="center">
+      <Image src="sys://magnifyingglass" class="empty-symbol"></Image>
+      <Label text="No matches" class="empty-title"></Label>
+      <Label [text]="'Nothing for “' + query() + '”.'" class="empty-caption" textWrap="true"></Label>
+    </StackLayout>
+  } @else {
+    <ListView [items]="results()" class="list" separatorColor="transparent" (itemTap)="onItemTap($event)" (loaded)="onListLoaded($event)">
+      <ng-template let-p="item">
+        <ns-pioneer-row [pioneer]="p"></ns-pioneer-row>
+      </ng-template>
+    </ListView>
+  }
+</GridLayout>
