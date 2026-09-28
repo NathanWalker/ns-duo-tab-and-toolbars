@@ -19,6 +19,24 @@
         </GridLayout>
       </GridLayout>
 
+
+      <StackLayout class="card card-spring">
+        <GridLayout columns="*, auto">
+          <Label text="Interruptible spring" class="spring-title"></Label>
+          <Label col="1" text="UIPanGestureRecognizer · CADisplayLink" class="spring-api" verticalAlignment="center"></Label>
+        </GridLayout>
+        <GridLayout class="spring-track" clipToBounds="false" (loaded)="onTrackLoaded($event)" (layoutChanged)="onTrackLayout()">
+          <GridLayout class="spring-track-bg"></GridLayout>
+          @if (crease(); as c) {
+            <GridLayout class="spring-crease" horizontalAlignment="left" [marginLeft]="c.x" [width]="c.width"></GridLayout>
+          }
+          <GridLayout id="knob" class="spring-knob" horizontalAlignment="left" verticalAlignment="center">
+            <Image src="sys://arrow.left.and.right" class="spring-knob-symbol"></Image>
+          </GridLayout>
+        </GridLayout>
+        <Label [text]="springStatus()" class="spring-status" textWrap="true"></Label>
+      </StackLayout>
+
       <Label text="Live from UIKit" class="section"></Label>
       <StackLayout class="card">
         @for (row of readouts(); track row.api) {

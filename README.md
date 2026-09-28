@@ -10,6 +10,7 @@ https://github.com/user-attachments/assets/e0019ef6-7030-47f5-bd7d-2d391a85d694
 - **Two panes on the fold** – with the device open, the Pioneers tab splits list and detail on the physical fold, using `UIViewReservedRegion`'s division region for the exact crease. Folded shut, the list stands alone and detail pushes. Unfold while a detail page is up and it collapses back into the split.
 - **Native toolbar** – every pioneer has a `UIToolbar` docked beneath it: previous and next (state-aware), bookmark (tinted, animated symbol), share (`UIActivityViewController`, anchored as a popover in regular widths) and a `UIMenu` with an inline sort section.
 - **Hinge tab** – `UIHingeInteraction` streams the hinge angle and status into signals; a small 3D model of the device swings with it, and the readouts show the raw values from UIKit.
+- **Interruptible spring** – on the Hinge tab, a knob you can drag, fling and catch mid-flight. A `UIPanGestureRecognizer` hands its velocity to a spring stepped by `CADisplayLink` in the app process, a zero-duration `UILongPressGestureRecognizer` stops it on touch-down, and the track shows the physical fold from `UIViewReservedRegion` (`src/app/duo/fold-snap.ios.ts`).
 - **Search tab** – a `UISearchTab` with a `UISearchController` in the navigation item, so the system places the field: integrated into the bar on iPhone, in the vertical bar on the Duo.
 - **Sort in the overflow** – the Pioneers list puts its sort options in the navigation bar's iOS 26 overflow menu (`additionalOverflowItems`).
 

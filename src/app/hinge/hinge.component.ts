@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, NO_ERRORS_SCHEMA, computed, effect, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, NO_ERRORS_SCHEMA, computed, effect, inject, signal } from '@angular/core';
 import { NativeScriptCommonModule } from '@nativescript/angular';
+import { EventData, View } from '@nativescript/core';
 import { DuoService } from '../duo/duo.service';
+import { FoldSnap } from '../duo/fold-snap';
 import { haptics } from '../duo/haptics';
 
 const TRACK_WIDTH = 200;
@@ -68,6 +70,12 @@ export class HingeComponent {
     ];
   });
 
+  readonly springStatus = signal('Drag it, fling it, catch it mid-flight.');
+  /** The fold crossing the spring track, in the track's coordinates. */
+  readonly crease = signal<{ x: number; width: number } | null>(null);
+  private track: View | null = null;
+  private snap: FoldSnap | null = null;
+
   constructor() {
     let last = this.duo.pose();
     effect(() => {
@@ -77,5 +85,34 @@ export class HingeComponent {
         haptics.tap();
       }
     });
+    effect(() => {
+      this.duo.fold();
+      this.onTrackLayout();
+    });
+    inject(DestroyRef).onDestroy(() => this.snap?.dispose());
+  }
+
+  onTrackLoaded(args: EventData): void {
+    this.track = args.object as View;
+    this.snap?.dispose();
+    this.snap = new FoldSnap(this.track, this.track.getViewById<View>('knob'), {
+      onGrab: (interrupted) => this.springStatus.set(interrupted ? 'Caught mid-flight' : 'Dragging'),
+      onRelease: (velocity, target) =>
+        this.springStatus.set(`Released at ${Math.round(Math.abs(velocity))} pt/s, springing to the ${target} end`),
+      onRest: (side) => {
+        haptics.tick();
+        this.springStatus.set(`At rest on the ${side} end`);
+      },
+    });
+    this.onTrackLayout();
+  }
+
+  onTrackLayout(): void {
+    this.snap?.relayout();
+    const fold = this.track ? this.duo.foldWithin(this.track) : null;
+    const next = fold?.axis === 'vertical' ? { x: fold.x, width: fold.width } : null;
+    if (JSON.stringify(next) !== JSON.stringify(this.crease())) {
+      this.crease.set(next);
+    }
   }
 }
