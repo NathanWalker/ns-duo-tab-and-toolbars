@@ -23,13 +23,19 @@ https://github.com/user-attachments/assets/e0019ef6-7030-47f5-bd7d-2d391a85d694
 | `src/app/hinge` | The hinge dashboard |
 | `src/app/search`, `src/app/bookmarks` | The other two tabs; `search-field.ts` wires `UISearchController` |
 | `e2e` | The e2e suite: `e2e.config.ts`, `tests/*.e2e.ts`, and the `fold()` fixture in `tests/duo.ts` |
-| `src/app/duo` | Hinge tracking (`hinge-tracker.ios.ts`), fold and bar-edge signals (`duo.service.ts`), iOS 27.1 typings (`uikit-duo.d.ts`), Liquid Glass view, bar item hints, and `fill-container.ts` |
+| `src/app/duo` | Hinge tracking (`hinge-tracker.ios.ts`), fold and bar-edge signals (`duo.service.ts`), iOS 27.1 typings (`uikit-duo.d.ts`), and the Liquid Glass view |
 
 `src/app/duo/uikit-duo.d.ts` declares the iOS 27.1 classes that `@nativescript/types` 9.1 does not have yet (`UIHingeInteraction`, `UIViewReservedRegion`, `UIVerticalBarEdge`, `UIArrangementViewController`, plus the iOS 27 `UITabBarController` additions). Delete it once the published types catch up.
 
-## A core note for foldables
+## Core support for the Duo
 
-`UIScreen.main` on the Duo is always the outer display. `@nativescript/core` leaves the native frame of `TabView` and `Frame` to UIKit, and UIKit sizes a controller's view from `UIScreen.main` when it is created, so a `TabView` created while the app sits on the inner display stays outer-display-sized. `src/app/duo/fill-container.ts` pins it to its container with an autoresizing mask; the same idea belongs in core.
+The app runs on core from [NativeScript/NativeScript#11438](https://github.com/NativeScript/NativeScript/pull/11438), which it also serves to validate. `UIScreen.main` on the Duo is always the outer display, and the PR fixes the places where core assumed otherwise:
+
+- A `TabView` or `Frame` hosted in a NativeScript view is laid out from its layout slot. Without this, a `TabView` created while the app sits on the inner display stays outer-display-sized.
+- `Screen.mainScreen` reports the size of the display the window is on.
+- `ActionItem`s keep their `text` as the title next to an `icon`, so the vertical bar's overflow menu can list them, and accept `ios.visibilityPriority` and `ios.axisBehavior` (iOS 27.1).
+
+Duo problems found here are fixed on that PR rather than worked around in the app.
 
 ## Run it
 
@@ -57,4 +63,4 @@ Start with the Duo booted and folded shut. Passing `agent.act` steps are cached 
 
 ## Stack
 
-NativeScript 9.1 (core from [NativeScript/NativeScript#11434](https://github.com/NativeScript/NativeScript/pull/11434)) · Angular 22, zoneless with signals · Vite · `@nstudio/nativescript-toolbar` · Tailwind CSS
+NativeScript 9.1 (core from [NativeScript/NativeScript#11438](https://github.com/NativeScript/NativeScript/pull/11438)) · Angular 22, zoneless with signals · Vite · `@nstudio/nativescript-toolbar` · Tailwind CSS

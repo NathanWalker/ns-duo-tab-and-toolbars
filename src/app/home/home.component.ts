@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, Component, NO_ERRORS_SCHEMA, inject } from '@a
 import { PageRouterOutlet, RouterExtensions, TabViewDirective, TabViewItemDirective } from '@nativescript/angular';
 import { EventData, SelectedIndexChangedEventData, TabView } from '@nativescript/core';
 import { DuoService } from '../duo/duo.service';
-import { fillNativeContainer } from '../duo/fill-container';
 import { haptics } from '../duo/haptics';
 
 const TABS = [
@@ -29,7 +28,6 @@ export class HomeComponent {
   onTabsLoaded(args: EventData): void {
     this.tabView = args.object as TabView;
     this.duo.attach(this.tabView);
-    fillNativeContainer(this.tabView);
     this.showTab(this.tabView.selectedIndex || 0);
     if (__APPLE__) {
       const controller = this.tabView.ios as UITabBarController;

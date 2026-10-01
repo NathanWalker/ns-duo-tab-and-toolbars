@@ -79,21 +79,6 @@ interface UIViewController {
   readonly preferredVerticalBarBehavior: UIVerticalBarBehavior;
 }
 
-declare const enum UIBarButtonItemAxisBehavior {
-  Automatic = 0,
-  HorizontalOnly = 1,
-  VerticalPreferred = 2,
-}
-
-declare var UIBarButtonItemVisibilityPriorityHigh: number;
-declare var UIBarButtonItemVisibilityPriorityStandard: number;
-declare var UIBarButtonItemVisibilityPriorityLow: number;
-
-interface UIBarButtonItem {
-  axisBehavior: UIBarButtonItemAxisBehavior;
-  visibilityPriority: number;
-}
-
 declare const enum UISheetPresentationControllerPlacement {
   Automatic = 0,
   Leading = 1,

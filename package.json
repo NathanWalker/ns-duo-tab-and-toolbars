@@ -14,7 +14,7 @@
     "@angular/router": "~22.0.0",
     "@nativescript/angular": "22.0.1-dev.0",
     "@nativescript/canvas": "3.0.0-alpha.14",
-    "@nativescript/core": "https://pkg.pr.new/@nativescript/core@11434",
+    "@nativescript/core": "https://pkg.pr.new/@nativescript/core@11438",
     "@nstudio/nativescript-menu": "1.0.5",
     "@nstudio/nativescript-toolbar": "^1.0.0",
     "@valor/nativescript-websockets": "^2.0.3",
