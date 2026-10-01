@@ -22,6 +22,7 @@ https://github.com/user-attachments/assets/e0019ef6-7030-47f5-bd7d-2d391a85d694
 | `src/app/pioneers` | List, two-pane split, detail page, and the toolbar panel |
 | `src/app/hinge` | The hinge dashboard |
 | `src/app/search`, `src/app/bookmarks` | The other two tabs; `search-field.ts` wires `UISearchController` |
+| `e2e` | The e2e suite: `e2e.config.ts`, `tests/*.e2e.ts`, and the `fold()` fixture in `tests/duo.ts` |
 | `src/app/duo` | Hinge tracking (`hinge-tracker.ios.ts`), fold and bar-edge signals (`duo.service.ts`), iOS 27.1 typings (`uikit-duo.d.ts`), Liquid Glass view, bar item hints, and `fill-container.ts` |
 
 `src/app/duo/uikit-duo.d.ts` declares the iOS 27.1 classes that `@nativescript/types` 9.1 does not have yet (`UIHingeInteraction`, `UIViewReservedRegion`, `UIVerticalBarEdge`, `UIArrangementViewController`, plus the iOS 27 `UITabBarController` additions). Delete it once the published types catch up.
@@ -40,6 +41,19 @@ ns run ios --device "iPhone Duo"
 ```
 
 Fold and unfold with the posture buttons at the bottom of the Device Hub window. Android builds, but the Duo features are iOS only; on any device without a hinge the Hinge tab says so and the rest of the app behaves like a regular phone.
+
+## End-to-end tests
+
+`e2e/` is an [e2e](https://tester.army/e2e) suite (TesterArmy's open source agentic test runner) that drives the app on the iPhone Duo simulator through `@e2e-dev/mobile`. Tests mix plain-English agent steps (`agent.act`, `agent.assert`, `agent.extract`) with exact locator checks, and a `fold()` fixture changes the hinge pose with [agent-device](https://github.com/callstack/agent-device)'s `fold` command, so the suite covers the closed outer display and the half-open two-pane layout.
+
+```bash
+cd e2e && npm install
+echo "ANTHROPIC_API_KEY=sk-ant-..." > .env   # agent steps use Claude Sonnet 5.5; E2E_MODEL picks another
+cd .. && npm run e2e:build                    # the suite installs this simulator build
+npm run e2e
+```
+
+Start with the Duo booted and folded shut. Passing `agent.act` steps are cached in `e2e/.e2e/cache` and replay without a model call; `npm run e2e -- --no-cache` makes the agent drive every step again. The project registers `e2e mcp` in `.mcp.json` and ships the e2e skill in `.claude/skills/e2e`, so a coding agent here can explore the live app and write new tests.
 
 ## Stack
 

@@ -43,6 +43,8 @@
   "scripts": {
     "ios": "ns debug ios",
     "android": "ns debug android",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "e2e": "npm --prefix e2e run test:e2e",
+    "e2e:build": "ns build ios --emulator"
   }
 }
