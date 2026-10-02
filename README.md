@@ -29,13 +29,11 @@ https://github.com/user-attachments/assets/e0019ef6-7030-47f5-bd7d-2d391a85d694
 
 ## Core support for the Duo
 
-The app runs on core from [NativeScript/NativeScript#11438](https://github.com/NativeScript/NativeScript/pull/11438), which it also serves to validate. `UIScreen.main` on the Duo is always the outer display, and the PR fixes the places where core assumed otherwise:
+The app runs on core `next`, which includes [NativeScript/NativeScript#11438](https://github.com/NativeScript/NativeScript/pull/11438), the Duo support this app was built to validate. `UIScreen.main` on the Duo is always the outer display, and the PR fixes the places where core assumed otherwise:
 
 - A `TabView` or `Frame` hosted in a NativeScript view is laid out from its layout slot. Without this, a `TabView` created while the app sits on the inner display stays outer-display-sized.
 - `Screen.mainScreen` reports the size of the display the window is on.
 - `ActionItem`s keep their `text` as the title next to an `icon`, so the vertical bar's overflow menu can list them, and accept `ios.visibilityPriority` and `ios.axisBehavior` (iOS 27.1).
-
-Duo problems found here are fixed on that PR rather than worked around in the app.
 
 ## Run it
 
@@ -63,4 +61,4 @@ Start with the Duo booted and folded shut. Passing `agent.act` steps are cached 
 
 ## Stack
 
-NativeScript 9.1 (core from [NativeScript/NativeScript#11438](https://github.com/NativeScript/NativeScript/pull/11438)) · Angular 22, zoneless with signals · Vite · `@nstudio/nativescript-toolbar` · Tailwind CSS
+NativeScript 9.1 (core `next`) · Angular 22, zoneless with signals · Vite · `@nstudio/nativescript-toolbar` · Tailwind CSS
